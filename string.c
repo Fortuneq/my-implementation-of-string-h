@@ -119,6 +119,33 @@ char *s21_strcat(char *s1, const char *s2)
     printf("%s",s1);
     return s1;
 }
+void * s21_memmove(void* dest, const void* src, s21_size_t n)
+{
+    char *pDest = (char *)dest;
+    const char *pSrc =( const char*)src;
+
+    char *tmp  = (char *)malloc(sizeof(char ) * n);
+    if(NULL == tmp)
+    {
+        return NULL;
+    }
+    else
+    {
+        s21_size_t i = 0;
+        // copy src to tmp array
+        for(i =0; i < n ; ++i)
+        {
+            *(tmp + i) = *(pSrc + i);
+        }
+        //copy tmp to dest
+        for(i =0 ; i < n ; ++i)
+        {
+            *(pDest + i) = *(tmp + i);
+        }
+        free(tmp); //free allocated memory
+    }
+    return dest;
+}
 
 int main()
 {
