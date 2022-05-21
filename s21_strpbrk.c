@@ -1,14 +1,20 @@
 #include "s21_string.h"
 
+char *s21_strpbrk(const char *str1, const char *str2) {
+    char *res = S21_NULL;
 
-char *s21_strpbrk(char *str1,  char *str2) {
-    while (*str1) {
-        if (s21_strchr(str2,*str1)) {
-            return str1;
+    for (const char *a = str1; *a; a++) {
+        for (const char *b = str2; *b; b++) {
+            if (*a == *b) {
+                res = (char *)a;
+                break;
+            }
         }
-        else {
-            str1++;
+
+        if (res) {
+            break;
         }
     }
-    return NULL;
+
+    return res;
 }

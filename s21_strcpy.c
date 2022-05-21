@@ -1,16 +1,11 @@
 #include "s21_string.h"
 
+char *s21_strcpy(char *dest, const char *src) {
+    for (int i = 0; src[i]; i++) {
+        dest[i] = src[i];
+    }
 
-char *s21_strcpy (char *dest, char *src) {
-    if (dest == NULL) {
-        return NULL;
-    }
-    char *ptr = dest;
-    while (*src != '\0') {
-        *dest = *src;
-        dest++;
-        src++;
-    }
-    *dest = '\0';
-    return ptr;
+    dest[s21_strlen(src)] = '\0';
+
+    return dest;
 }

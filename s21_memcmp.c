@@ -1,32 +1,14 @@
 #include "s21_string.h"
 
-int s21_memcmp(const void *s1, const void *s2, s21_size_t len) {
-    unsigned const char *p = s1;
-    unsigned const char *q = s2;
-    int charCompareStatus = 0;
-    // If both pointer pointing same memory block
-    if (s1 == s2) {
-        // printf("%d\n", charCompareStatus);
-        return charCompareStatus;
+int s21_memcmp(const void *str1, const void *str2, s21_size_t n) {
+    unsigned char *s1 = (unsigned char *)str1;
+    unsigned char *s2 = (unsigned char *)str2;
+    int dif = 0;
+    for (s21_size_t i = 0; i < n; i++) {
+        dif = *s1 - *s2;
+        if (*s1 != *s2) break;
+        s1++;
+        s2++;
     }
-    while (len > 0)
-    {
-        if (*p != *q)
-        { // compare the mismatching character
-            if (*p > *q)
-            {
-                charCompareStatus = 1;
-            }
-            else
-            {
-                charCompareStatus = -1;
-            }
-            break;
-        }
-        len--;
-        p++;
-        q++;
-    }
-    // printf("%d\n", charCompareStatus);
-    return charCompareStatus;
+    return dif;
 }

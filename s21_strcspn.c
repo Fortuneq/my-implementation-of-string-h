@@ -1,19 +1,21 @@
 #include "s21_string.h"
 
-
 s21_size_t s21_strcspn(const char *str1, const char *str2) {
-    unsigned int len = 0;
-    if ((str1 == NULL) || (str2 == NULL)) {
-        return len;
-    }
-    while (*str1) {
-        if (s21_strchr(str2, *str1)) {
-            return len;
+    s21_size_t counter = 0;
+
+    for (const char *a = str1; *a; a++) {
+        unsigned short was = 0;
+        for (const char *b = str2; *b; b++) {
+            if (*a == *b) {
+                was = 1;
+                break;
+            }
+        }
+        if (was) {
+            break;
         } else {
-            str1++;
-            len++;
+            counter++;
         }
     }
-    return len;
+    return counter;
 }
-

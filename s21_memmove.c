@@ -1,20 +1,32 @@
 #include "s21_string.h"
 
-void *s21_memmove(void* dest, const void* src, s21_size_t n) {
-    unsigned char *s1;
-    unsigned char *s2;
+// src: ABCDEFG
+// dest: ..[CDEFG]
+// buf:
+// res:
 
-    s1 = (unsigned char*)dest;
-    s2 = (unsigned char*)src;
-    if(!dest && !src) {
-        return(NULL);
-    
+/**
+ * @brief Copies n bytes from memory area src to memory area dest. The memory
+ * ares may overlap: copying takes place as though the bytes in src are first
+ * copied into tmp array that does not overlap src or dest, and then the bytes
+ * are then copies from the tmp to dest.
+ *
+ * @param dest
+ * @param src
+ * @param n
+ * @return void*
+ */
+
+void *s21_memmove(void *dest, const void *src, s21_size_t n) {
+    char *to = (char *)dest;
+    char *from = (char *)src;
+
+    char *tmp = (char *)malloc(sizeof(char) * n);
+
+    if (tmp) {
+        s21_memcpy(tmp, from, n);
+        s21_memcpy(to, tmp, n);
+        free(tmp);
     }
-    if(s2 < s1) {
-        while(n--)
-        s1[n] = s2[n];
-    }
-    else
-        s21_memcpy(s1, s2, n);
-    return(dest);
+    return dest;
 }
