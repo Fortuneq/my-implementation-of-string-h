@@ -2260,8 +2260,8 @@ Suite *suite_sscanf(void) {
     tcase_add_test(tc, spec_i_hex2);
 
     // // [%s]
-    // // Width: (N) - parses N chars, (*) - пропустить строку
-    // // OUT: res = 4 (корректно парсит все в разные строки)
+    // // Width: (N) - parses N chars, (*) - skip the string
+    // // OUT: res = 4 (correctly parses everything into separate strings)
     // // int res = sscanf("abobashlepafloppakoppa", "%5s %6s %6s %4s", s1, s2,
     // s3,
     // // s4); Precision, length - not applicable
@@ -2283,7 +2283,7 @@ Suite *suite_sscanf(void) {
     tcase_add_test(tc, strings_mixed3);
 
     // // [%f] [%g] [%G]
-    // // Width: (N) - parses N chars, (*) - пропустить строку
+    // // Width: (N) - parses N chars, (*) - skip the string
     // // Precision: take it into account while parsing AFTER (.)
     // // Length - l - long
 

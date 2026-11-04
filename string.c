@@ -13,21 +13,21 @@ s21_size_t s21_strlen(const char *str)
 
 void *s21_memchr(const void *s, unsigned int c, s21_size_t n)
 {
-    unsigned char *p = (unsigned char *)s; // создаём поинтер строки по которому будем двигаться
-    unsigned char *isCharFind = NULL;      // указатель на будущее расположение символа в строке
-    while ((s != NULL) && (n--))           // строка не кончилась из беззнаковго n можно вычесть
+    unsigned char *p = (unsigned char *)s; // create a string pointer that we will move along
+    unsigned char *isCharFind = NULL;      // pointer to the future position of the character in the string
+    while ((s != NULL) && (n--))           // the string has not ended and we can still subtract from unsigned n
     {
-        if (*p != (unsigned char)c) //если значение указателя не равно символу
+        if (*p != (unsigned char)c) //if the pointer value is not equal to the character
         {
-            p++; // сдвигаемся вперёд на один символ
+            p++; // move forward by one character
         }
         else
         {
-            isCharFind = p; // указатель на расположение символа равен текущему
+            isCharFind = p; // the pointer to the character position equals the current one
             break;
         }
     }
-    return isCharFind; // возвращаем указатель на расположение
+    return isCharFind; // return the pointer to the position
 }
 
 int s21_memcmp(const void *s1, const void *s2, s21_size_t len)
